@@ -2,9 +2,9 @@
 
 <div><h3>项目结构</h3></div>
 <br/>
-<div style="">qtyd-v2项目根目录</div>
-<div style="margin-left:30px;">代码pull下来之后直接编译根目录pom.xml</div>
-<div style="padding-left:30px">jar公共包管理全部在根目录，如果只有子项目使用架包，可单独在子项目pom下引入架包，版本号还是在根目录pom下管理</div>
+<div>qtyd-v2项目根目录</div>
+<div>代码pull下来之后直接编译根目录pom.xml</div>
+<div>jar公共包管理全部在根目录，如果只有子项目使用架包，可单独在子项目pom下引入架包，版本号还是在根目录pom下管理</div>
 <br/>
 <div>服务注册</div>
 <div>qtyd-server</div>
