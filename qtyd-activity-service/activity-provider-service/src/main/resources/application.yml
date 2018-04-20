@@ -1,0 +1,30 @@
+server:
+#  context-path: /activity-provider-service/ #由于使用了zuul网关，需要关闭上下文
+  port: ${server.port} #提供者服务端口
+eureka: #提供者服务配置
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://${security.user.name}:${security.user.password}@${eureka.host}:${eureka.port}/eureka-server/eureka/
+spring: #指定启动配置文件
+  profiles:
+    active: test
+  application:
+      name: activity-provider-service
+  redis:
+      database: 0
+      host: ${redis.host}
+      pool.max-active: 8
+      pool.max-idle: 8
+      pool.min-idle: 0
+      pool.max-wait: -1
+      port: 6379
+      timeout: 0
+      password: ${redis.password}
+management: #关闭security认证，让消费者可以访问进来
+  security:
+    enabled: false
+feign:
+  httpclient:
+    enabled: true

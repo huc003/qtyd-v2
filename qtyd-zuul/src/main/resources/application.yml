@@ -1,0 +1,25 @@
+server:
+  context-path: /qtyd-zuul/
+  port: ${server.port}
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://${security.user.name}:${security.user.password}@${eureka.host}:${eureka.port}/eureka-server/eureka/
+spring:
+  profiles:
+    active: test
+  application:
+      name: qtyd-zuul
+zuul: #网关配置
+  routes:
+    api-a: #网关服务1
+      path: /api-test/** #网关转发请求地址
+      service-id: qtyd-test #对应暴露的提供者服务名
+    api-b: #网关服务2
+      path: /api-activity/**
+      service-id: activity-provider-service
+      #      sensitiveHeaders:
+      #         url: https://localhost:8765/qtyd-test/
+      #         stripPrefix: false

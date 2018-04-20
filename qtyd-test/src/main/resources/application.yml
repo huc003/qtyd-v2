@@ -1,0 +1,27 @@
+server:
+#  context-path: /qtyd-test/
+  port: ${server.port}
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://${security.user.name}:${security.user.password}@${eureka.host}:${eureka.port}/eureka-server/eureka/
+feign:
+  httpclient:
+    enabled: true
+spring:
+  profiles:
+    active: test
+  application:
+      name: qtyd-test
+  redis:
+      database: 0
+      host: ${redis.host}
+      pool.max-active: 8
+      pool.max-idle: 8
+      pool.min-idle: 0
+      pool.max-wait: -1
+      port: 6379
+      timeout: 0
+      password: ${redis.password}
