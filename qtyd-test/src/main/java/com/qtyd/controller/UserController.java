@@ -35,4 +35,13 @@ public class UserController {
     public String findByIdFeign(String id) {
         return userApi.addRedis(id);
     }
+
+    @GetMapping("selectByPrimaryKey")
+    @ApiOperation(value = "获取用户信息",httpMethod = "GET",notes = "获取用户信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "userId",value = "用户ID(非空)",required = true,dataType = "Integer",paramType = "query")
+    })
+    public String selectByPrimaryKey(Integer userId){
+        return userApi.selectByPrimaryKey(userId);
+    }
 }

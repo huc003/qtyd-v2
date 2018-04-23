@@ -28,3 +28,19 @@ management: #关闭security认证，让消费者可以访问进来
 feign:
   httpclient:
     enabled: true
+#####################################################################################################
+# mysql 属性配置
+datasource:
+  driver-class-name: com.mysql.jdbc.Driver
+  url: jdbc:mysql://192.168.116.128:3306/qttz_cashier_xiamen
+  username: root
+  password: 258369
+#  jpa:
+#    hibernate:
+#      #ddl-auto: create #ddl-auto:设为create表示每次都重新建表
+#      ddl-auto: update #ddl-auto:设为update表示每次都不会重新建表
+#    show-sql: true
+#####################################################################################################
+#logging:
+#  config: classpath:logback-spring.xml
+

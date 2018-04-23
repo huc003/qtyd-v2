@@ -19,10 +19,11 @@ import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * @author huc E-mail:459382234@qq.com
- * @version 创建时间：2018年3月12日 下午4:13:15
- * 类说明
- */
+ * @Author: 胡成
+ * @Version: 0.0.1V
+ * @Date: 2018/4/23
+ * @Description: redis配置
+ **/
 @Configuration
 @EnableCaching
 public class RedisConfig extends CachingConfigurerSupport{

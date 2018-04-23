@@ -2,6 +2,7 @@ package com.qtyd;
 
 import com.qtyd.config.RedisConfig;
 import com.qtyd.utils.RedisUtils;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -17,6 +18,7 @@ import org.springframework.context.annotation.Import;
 @SpringBootApplication
 @EnableFeignClients
 @EnableDiscoveryClient
+@MapperScan(basePackages={"com.qtyd.mapper"}, sqlSessionFactoryRef="sqlSessionFactory")
 public class ActivityProviderServiceApplication {
 
 	public static void main(String[] args) {

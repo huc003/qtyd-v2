@@ -1,7 +1,10 @@
 package com.qtyd.api;
 
+import com.alibaba.fastjson.JSONObject;
+import com.qtyd.service.UserService;
 import com.qtyd.utils.RedisUtils;
 import com.qtyd.utils.TimeUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
  * @Date:   2018/4/20 14:10
  * @Description: 服务提供者具体的实现
 **/
+@Slf4j
 @RestController
 @RequestMapping("user")
 public class UserApi {
@@ -17,13 +21,13 @@ public class UserApi {
     @Autowired
     private RedisUtils redisUtils;
 
-//    @RequestMapping(value="/add/{id}", method= RequestMethod.GET)
+    @Autowired
+    private UserService userService;
+
     @GetMapping("add/{id}")
     public String addRedis(@PathVariable("id") String id){
-        System.out.println("------"+id);
         //获取当天日期
         redisUtils.lpush("success_order_"+TimeUtils.strDay(),"{user_id:"+id+",order_id:123123123,add_time:1523859194}");
-        System.out.println("---------"+redisUtils.length("success_order_"+TimeUtils.strDay()));
 //        System.out.println("从redis取出数据:"+redisUtils.pop("success_order_"+TimeUtils.strDay()));
         return "key：success_order_"+TimeUtils.strDay()+"，value："+redisUtils.length("success_order_"+TimeUtils.strDay());
     }
@@ -34,5 +38,12 @@ public class UserApi {
         redisUtils.clean(key+"_"+TimeUtils.strDay());
         System.out.println(redisUtils.pop("success_order_"+TimeUtils.strDay()));
         return "清除成功:"+redisUtils.length(key+"_"+TimeUtils.strDay());
+    }
+
+
+    @RequestMapping(value = "selectByPrimaryKey",method = RequestMethod.GET)
+    public String selectByPrimaryKey(Integer userId){
+        log.info("测试输出日志......");
+        return JSONObject.toJSONString(userService.selectByPrimaryKey(userId));
     }
 }
