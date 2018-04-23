@@ -20,6 +20,7 @@
 <div>服务消费者，测试API用</div>
 <div>qtyd-test</div>
 <br/>
+<div>整合mybatis，以及logback根据日志类型写入不同的文件</div>
 
 
 
