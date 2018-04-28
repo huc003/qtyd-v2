@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(name = "activity-provider-service")
 public interface UserApi {
     @RequestMapping("/user/add/{id}")
-    public String addRedis(@RequestParam("id") String id);
+    String addRedis(@RequestParam("id") String id);
 
     @RequestMapping("/user/selectByPrimaryKey")
-    public String selectByPrimaryKey(@RequestParam("userId") Integer userId);
+    String selectByPrimaryKey(@RequestParam("userId") Integer userId);
 }
