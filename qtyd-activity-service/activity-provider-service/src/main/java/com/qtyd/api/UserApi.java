@@ -2,6 +2,8 @@ package com.qtyd.api;
 
 import com.alibaba.fastjson.JSONObject;
 import com.qtyd.service.UserService;
+import com.qtyd.utils.RedisDefaultUtils;
+import com.qtyd.utils.RedisOrderUtils;
 import com.qtyd.utils.RedisUtils;
 import com.qtyd.utils.TimeUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +21,10 @@ import org.springframework.web.bind.annotation.*;
 public class UserApi {
 
     @Autowired
-    private RedisUtils redisUtils;
+    private RedisDefaultUtils redisUtils;
+    @Autowired
+    private RedisOrderUtils redisOrderUtils;
+
 
     @Autowired
     private UserService userService;
@@ -28,6 +33,7 @@ public class UserApi {
     public String addRedis(@PathVariable("id") String id){
         //获取当天日期
         redisUtils.lpush("success_order_"+TimeUtils.strDay(),"{user_id:"+id+",order_id:123123123,add_time:1523859194}");
+        redisOrderUtils.lpush("success_order_"+TimeUtils.strDay(),"{user_id:"+id+",order_id:123123123,add_time:1523859194}");
 //        System.out.println("从redis取出数据:"+redisUtils.pop("success_order_"+TimeUtils.strDay()));
         return "key：success_order_"+TimeUtils.strDay()+"，value："+redisUtils.length("success_order_"+TimeUtils.strDay());
     }

@@ -11,17 +11,23 @@ spring: #指定启动配置文件
   profiles:
     active: test
   application:
-      name: activity-provider-service
+    name: activity-provider-service
   redis:
-      database: 0
-      host: ${redis.host}
-      pool.max-active: 8
-      pool.max-idle: 8
-      pool.min-idle: 0
-      pool.max-wait: -1
-      port: 6379
-      timeout: 0
-      password: ${redis.password}
+    database: 0
+    host: ${redis.host}
+    pool.max-active: 8
+    pool.max-idle: 8
+    pool.min-idle: 0
+    pool.max-wait: -1
+    port: 6379
+    timeout: 0
+    password: ${redis.password}
+  redis-order:
+    database: 0
+    host: ${redis.order.host}
+    port: 6379
+    timeout: 0
+    password: ${redis.order.password}
 management: #关闭security认证，让消费者可以访问进来
   security:
     enabled: false
