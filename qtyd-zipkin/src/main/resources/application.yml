@@ -1,0 +1,17 @@
+server:
+  port: 9411
+spring:
+  rabbitmq:
+    host: 192.168.116.128:3306
+  datasource:
+#    schema: classpath:/mysql.sql
+    url: jdbc:mysql://192.168.116.128:3306/qttz_cashier_xiamen
+    username: root
+    password: 258369
+    initialize: true
+    continueOnError: true
+sleuth:
+    enabled: false
+zipkin:
+  storage:
+    type: mysql

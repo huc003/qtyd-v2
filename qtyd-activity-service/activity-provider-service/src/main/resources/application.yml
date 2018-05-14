@@ -57,4 +57,7 @@ datasource:
 #sample:
 #  zipkin:
 #    enabled: false
+sample:
+  zipkin:
+    enabled: false
 
