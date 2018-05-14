@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,27 +23,44 @@ import org.springframework.web.client.RestTemplate;
  * @Description: 测试提供者服务
  **/
 @RestController
-@Api(value="onlinestore", description="用户操作")
+@Api(value = "onlinestore", description = "用户操作")
 public class UserController {
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     @Autowired
     private UserApi userApi;
 
     @GetMapping("feign")
-    @ApiOperation(value = "添加redis信息",httpMethod = "GET",notes = "添加redis信息")
+    @ApiOperation(value = "添加redis信息", httpMethod = "GET", notes = "添加redis信息")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id",value = "用户ID(非空)",required = true,dataType = "String",paramType = "query")
+            @ApiImplicitParam(name = "id", value = "用户ID(非空)", required = true, dataType = "String", paramType = "query")
     })
     public String findByIdFeign(String id) {
         return userApi.addRedis(id);
     }
 
     @GetMapping("selectByPrimaryKey")
-    @ApiOperation(value = "获取用户信息",httpMethod = "GET",notes = "获取用户信息")
+    @ApiOperation(value = "获取用户信息", httpMethod = "GET", notes = "获取用户信息")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "userId",value = "用户ID(非空)",required = true,dataType = "Integer",paramType = "query")
+            @ApiImplicitParam(name = "userId", value = "用户ID(非空)", required = true, dataType = "Integer", paramType = "query")
     })
-    public String selectByPrimaryKey(Integer userId){
+    public String selectByPrimaryKey(Integer userId) {
         return userApi.selectByPrimaryKey(userId);
     }
+
+    @GetMapping("userByUserId")
+    @ApiOperation(value = "获取用户信息", httpMethod = "GET", notes = "从service里获取用户信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "userId", value = "用户ID(非空)", required = true, dataType = "Integer", paramType = "query")
+    })
+    public String userByUserId(Integer userId) {
+        MultiValueMap<String,Object> map = new LinkedMultiValueMap<>();
+        map.add("userId",userId);
+        String data = restTemplate.postForObject("http://192.168.0.111:8762/user/selectByPrimaryKey",map,String.class);
+        return data;
+    }
+
+
 }

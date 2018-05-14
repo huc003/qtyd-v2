@@ -28,6 +28,11 @@ spring: #指定启动配置文件
     port: 6379
     timeout: 0
     password: ${redis.order.password}
+  zipkin:
+    base-url: http://localhost:9411
+  sleuth:
+    sampler:
+      percentage: 1.0
 management: #关闭security认证，让消费者可以访问进来
   security:
     enabled: false
@@ -49,4 +54,7 @@ datasource:
 #####################################################################################################
 #logging:
 #  config: classpath:logback-spring.xml
+#sample:
+#  zipkin:
+#    enabled: false
 

@@ -11,6 +11,7 @@
         <module>qtyd-activity-service</module>
         <module>qtyd-test</module>
         <module>qtyd-zuul</module>
+        <module>qtyd-zipkin</module>
     </modules>
     <packaging>pom</packaging>
     <parent>
@@ -78,9 +79,8 @@
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-test</artifactId>
+                <artifactId>spring-boot-starter</artifactId>
                 <version>${springboot.version}</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
