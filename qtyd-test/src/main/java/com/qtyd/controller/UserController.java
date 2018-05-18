@@ -1,19 +1,15 @@
 package com.qtyd.controller;
 
 import com.qtyd.api.UserApi;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+import feign.Param;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -41,19 +37,16 @@ public class UserController {
         return userApi.addRedis(id);
     }
 
-    @GetMapping("selectByPrimaryKey")
-    @ApiOperation(value = "获取用户信息", httpMethod = "GET", notes = "获取用户信息")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "userId", value = "用户ID(非空)", required = true, dataType = "Integer", paramType = "query")
-    })
-    public String selectByPrimaryKey(Integer userId) {
+    @PostMapping("selectByPrimaryKey")
+    @ApiOperation(value = "获取用户信息", httpMethod = "POST", notes = "获取用户信息")
+    public String selectByPrimaryKey(@ApiParam(required = true, value = "用户userid") @RequestParam Integer userId) {
         return userApi.selectByPrimaryKey(userId);
     }
 
     @GetMapping("userByUserId")
     @ApiOperation(value = "获取用户信息", httpMethod = "GET", notes = "从service里获取用户信息")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "userId", value = "用户ID(非空)", required = true, dataType = "Integer", paramType = "query")
+            @ApiImplicitParam(name = "userId", value = "用户ID(非空)", required = true, dataType = "int", paramType = "query")
     })
     public String userByUserId(Integer userId) {
         MultiValueMap<String,Object> map = new LinkedMultiValueMap<>();

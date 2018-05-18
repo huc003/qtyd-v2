@@ -53,7 +53,8 @@ public class UserApi {
     }
 
 
-    @RequestMapping(value = "selectByPrimaryKey",method = RequestMethod.POST)
+//    @RequestMapping(value = "selectByPrimaryKey",method = RequestMethod.POST)
+    @PostMapping("selectByPrimaryKey")
     public String selectByPrimaryKey(Integer userId){
         log.info("测试输出日志......"+userId);
         return JSONObject.toJSONString(userService.selectByPrimaryKey(userId));

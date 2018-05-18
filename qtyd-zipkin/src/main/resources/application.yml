@@ -5,7 +5,7 @@ spring:
     host: 192.168.116.128:3306
   datasource:
 #    schema: classpath:/mysql.sql
-    url: jdbc:mysql://192.168.116.128:3306/qttz_cashier_xiamen
+    url: jdbc:mysql://192.168.0.115:3306/qttz_cashier_xiamen
     username: root
     password: 258369
     initialize: true

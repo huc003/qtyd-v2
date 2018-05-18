@@ -1,6 +1,7 @@
 package com.qtyd.api;
 
 import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -15,6 +16,6 @@ public interface UserApi {
     @RequestMapping("/user/add/{id}")
     String addRedis(@RequestParam("id") String id);
 
-    @RequestMapping("/user/selectByPrimaryKey")
+    @PostMapping("/user/selectByPrimaryKey")
     String selectByPrimaryKey(@RequestParam("userId") Integer userId);
 }
