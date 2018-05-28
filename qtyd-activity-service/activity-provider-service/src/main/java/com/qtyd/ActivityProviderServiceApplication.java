@@ -4,12 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
-import org.springframework.context.annotation.Bean;
-import zipkin2.Span;
-import zipkin2.reporter.Reporter;
 
 /**
  * @Author: 胡成
@@ -27,14 +23,4 @@ public class ActivityProviderServiceApplication {
 		SpringApplication.run(ActivityProviderServiceApplication.class, args);
 	}
 
-//	@Bean
-//	@ConditionalOnProperty(value = "sample.zipkin.enabled", havingValue = "false")
-//	public Reporter<Span> spanReporter() {
-//		return new Reporter<Span>() {
-//			@Override
-//			public void report(Span span) {
-//				log.info(span+"");
-//			}
-//		};
-//	}
 }

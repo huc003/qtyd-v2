@@ -1,5 +1,4 @@
 server:
-#  context-path: /qtyd-test/
   port: ${server.port}
 eureka:
   instance:

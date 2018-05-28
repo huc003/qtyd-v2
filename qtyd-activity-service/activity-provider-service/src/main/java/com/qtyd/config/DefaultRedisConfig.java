@@ -17,7 +17,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
  **/
 @Data
 @Configuration
-public class DefaultRedisConfig  extends RedisConfig {
+public class DefaultRedisConfig extends RedisConfig {
 
     @Value("${spring.redis.database}")
     private Integer database;

@@ -51,6 +51,7 @@
 			<artifactId>spring-cloud-starter-sleuth</artifactId>
 			<version>1.3.3.RELEASE</version>
 		</dependency>
+
 	</dependencies>
 
 

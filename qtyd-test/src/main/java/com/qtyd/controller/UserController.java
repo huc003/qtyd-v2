@@ -1,5 +1,6 @@
 package com.qtyd.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.qtyd.api.UserApi;
 import feign.Param;
 import io.swagger.annotations.*;
@@ -27,15 +28,6 @@ public class UserController {
 
     @Autowired
     private UserApi userApi;
-
-    @GetMapping("feign")
-    @ApiOperation(value = "添加redis信息", httpMethod = "GET", notes = "添加redis信息")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "用户ID(非空)", required = true, dataType = "String", paramType = "query")
-    })
-    public String findByIdFeign(String id) {
-        return userApi.addRedis(id);
-    }
 
     @PostMapping("selectByPrimaryKey")
     @ApiOperation(value = "获取用户信息", httpMethod = "POST", notes = "获取用户信息")
