@@ -15,11 +15,20 @@ spring:
 zuul: #网关配置
   routes:
     api-a: #网关服务1
-      path: /api-test/** #网关转发请求地址
-      serviceId: qtyd-test #对应暴露的提供者服务名
+      path: /api-test/**
+      url: http://localhost:8765/
     api-b: #网关服务2
-      path: /api-activity/**
-      serviceId: activity-provider-service
-      #      sensitiveHeaders:
-      #         url: https://localhost:8765/qtyd-test/
-      #         stripPrefix: false
+      path: /api-activity/** #网关转发请求地址
+      serviceId: activity-provider-service #对应暴露的提供者服务名
+  ratelimit:
+    enabled: true
+    behind-proxy: true
+    policy-list:
+      api-a:
+        - limit: 3
+          refresh-interval: 60
+          type:
+            - user
+            - origin
+            - url
+

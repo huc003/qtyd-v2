@@ -1,7 +1,9 @@
 package com.qtyd.accessfilter;
 
+import com.marcosbarbero.cloud.autoconfigure.zuul.ratelimit.config.Rate;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
+import com.netflix.zuul.http.ZuulServlet;
 import com.qtyd.utils.DesUtils;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
@@ -37,8 +39,10 @@ public class AccessFilter extends ZuulFilter{
 
     @Override
     public Object run() {
-//        RequestContext requestContext = RequestContext.getCurrentContext();
-//        HttpServletRequest request = requestContext.getRequest();
+        RequestContext requestContext = RequestContext.getCurrentContext();
+        HttpServletRequest request = requestContext.getRequest();
+
+//        System.out.println("================"+rate.getRemaining());
 //        String accessId = request.getHeader("accessId");
 //
 //        System.out.println("accessId:"+accessId);
